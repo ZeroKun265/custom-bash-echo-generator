@@ -1,0 +1,88 @@
+All information was taken by:
+https://misc.flogisoft.com/bash/tip_colors_and_formatting
+Plus a little of experimentation.
+
+
+_____________COLORS_____________
+Colors components are added before the word and they set the color for
+everything after them, unless the color is changed by another color component
+
+Here is a list of all colors
+BLACK    "\033[30m"
+RED      "\033[31m"
+GREEN    "\033[32m"
+YELLOW   "\033[33m"
+BLUE     "\033[34m"
+MAGENTA  "\033[35m"
+CYAN     "\033[36m"
+GRAY    "\033[37m"
+
+RESET    "\033[0m"
+
+DARK GRAY      "\033[90m"
+LIGHT RED      "\033[91m"
+LIGHT GREEN    "\033[92m"
+LIGHT YELLOW   "\033[93m"
+LIGHT BLUE     "\033[94m"
+LIGHT MAGENTA  "\033[95m"
+LIGHT CYAN     "\033[96m"
+WHITE          "\033[97m"
+
+Example:
+This will print the "love" in red:
+echo -e "I \033[31mlove \033[0mStackOverflow"
+
+Good practice, would be to add a reset escape code at the end of the echo statement
+or else the color won't be changed for the next output:
+echo -e "I \033[31mlove \033[0mStackOverflow\033[0m"
+
+_____________DECORATIONS_____________
+Decorations are added by appending their number after a semicolon with the number of the color
+Example: echo -e "\033[31;3mHello\033[0m"
+This will print "Hello" in red(the 31) AND in Italic(the 3)
+
+
+Decorations are stackable, meaning one can make a bold, highlighted and italic text
+Example: echo -e "\033[31;3;1;44mHello\033[0m"
+This will print a red, italic, bold and blue-highlighted Hello
+
+List of decorations:
+(Only their number will be listed, but they of course need the semicolon)
+
+Text Stylings:
+NORMAL     0
+BOLD       1
+DIM        2
+ITALIC     3
+UNDERLINED 4
+BLINKING   5 (We mention it here but most Terminals won't support BLINKING, for more info check https://www.unix.com/shell-programming-and-scripting/97869-how-blink-terminal.html)
+REVERSE    7 (Reverses the color of the text and the background, won't be used in the script, just like BLINKING)
+INVISIBLE  8 (Won't be used in the script, just like BLINKING and REVERSE)
+
+
+Text highlight:
+BLACK         40
+RED           41
+GREEN         42
+YELLOW        43
+BLUE          44
+MAGENTA       45
+CYAN          46
+GRAY          47
+
+DEFAULT       49
+
+DARK GREY         100
+LIGHT RED         101
+LIGHT GREEN       102
+LIGHT YELLOW      103
+LIGHT BLUE        104
+LIGHT MAGENTA     105
+LIGHT CYAN        106
+WHITE             107
+
+
+_____________NOTES_____________
+Just know that there is no standardized way of making terminals, when dealing with low level systems
+everything depends on what you're working on, so some text styling may not work, and it's not
+our fault nor Bash's fault nor yours, it's the terminal's
