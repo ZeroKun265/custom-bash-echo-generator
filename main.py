@@ -8,6 +8,7 @@
 
 # the double \ is to escape the first \, or else it would
 # be considered a non-printable character like \n
+
 test_list_repr = [
 ["I", ["WHITE"], "\\033[97;0m"],
 [" love", ["RED", "BOLD", "ITALIC"], "\\033[31;1;3m"],
