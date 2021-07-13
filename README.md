@@ -1,0 +1,1 @@
+"# custom-bash-echo-generator" 
