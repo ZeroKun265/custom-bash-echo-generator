@@ -39,15 +39,51 @@ COLORS = {
 
 DECORATIONS = {
     "NORMAL": 0,
-
+    "BOLD": 1,
+    "DIM": 2,
+    "ITALIC": 3,
+    "UNDERLINEE": 4,
+    "BLINKING": 5,
+    "REVERSE": 7,
+    "INVISIBLE": 8,
 }
 
+HIGHLIGHTS = {
+    "BLACK HIGHLIGHT": 40,
+    "RED HIGHLIGHT": 41,
+    "GREEN HIGHLIGHT": 42,
+    "YELLOW HIGHLIGHT": 43,
+    "BLUE HIGHLIGHT": 44,
+    "MAGENTA HIGHLIGHT": 45,
+    "CYAN GIGHLIGHT": 46,
+    "GRAY HIGHLIGHT":47,
+    "DEFAULT": 49,
+    "DARK GREY HIGHLIGHT": 100,
+    "LIGHT RED HIGHLIGHT": 101,
+    "LIGHT GREEN HIGHLIGHT": 102,
+    "LIGHT YELLOW HIGHLIGHT": 103,
+    "LIGHT BLUE HIGHLIGHT": 104,
+    "LIGHT MAGENTA HIGHLIGHT":105,
+    "LIGHT CYAN HIGHLIGHT": 106,
+    "WHITE HIGHLIGHT": 107
+}
 
 
 def generate_escapes(attributes):
     rv = "\\033["
-    for attribute in attribute:
-        pass
+    color_assigned = False
+    highlight_assigned = False
+    for attribute in attributes:
+        if COLORS.get(attribute, False) and not color_assigned:
+            rv += str(COLORS[attribute]) + ";"
+            color_assigned = True
+        elif HIGHLIGHTS.get(attribute, False) and not highlight_assigned:
+            rv += str(HIGHLIGHTS[attribute]) + ";"
+            highlight_assigned = True
+        elif DECORATIONS.get(attribute, False):
+            rv += str(DECORATIONS[attribute]) + ";"
+    return rv + "m"
+
 def generate_echo(list_repr):
     result = "echo -e \""
     for component in list_repr:
@@ -55,4 +91,5 @@ def generate_echo(list_repr):
     result += "\""
     return result
 
-print(generate_echo(test_list_repr))
+print("\\033[32;1;3m")
+print(generate_escapes(["GREEN", "BOLD", "ITALIC", "RED"]))
