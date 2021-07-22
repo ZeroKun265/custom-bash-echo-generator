@@ -68,7 +68,12 @@ HIGHLIGHTS = {
     "WHITE HIGHLIGHT": 107
 }
 
-
+# Note that when assigning colors to 
+# a component the actual colornthat will be used to generate 
+# the escape code is the first in the list
+# so adding more colors is useless
+# also, as good practice, only one color
+# should beninside of a component
 def generate_escapes(attributes):
     rv = "\\033["
     color_assigned = False
