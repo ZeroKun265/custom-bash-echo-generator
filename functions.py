@@ -96,5 +96,3 @@ def generate_echo(list_repr):
     result += "\""
     return result
 
-print("\\033[32;1;3m")
-print(generate_escapes(["GREEN", "BOLD", "ITALIC", "RED"]))
