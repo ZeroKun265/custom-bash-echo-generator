@@ -96,3 +96,28 @@ def generate_echo(list_repr):
     result += "\""
     return result
 
+def print_colors():
+    print(u"""
+COLORS:
+
+\033[0mBLACK    \033[30mExample
+\033[0mRED      \033[31mExample
+\033[0mGREEN    \033[32mExample
+\033[0mYELLOW   \033[33mExample
+\033[0mBLUE     \033[34mExample
+\033[0mMAGENTA  \033[35mExample
+\033[0mCYAN     \033[36mExample
+\033[0mGRAY    \033[37mExample
+
+\033[0mRESET    \033[0mExample
+
+\033[0mDARK GRAY      \033[90mExample
+\033[0mLIGHT RED      \033[91mExample
+\033[0mLIGHT GREEN    \033[92mExample
+\033[0mLIGHT YELLOW   \033[93mExample
+\033[0mLIGHT BLUE     \033[94mExample
+\033[0mLIGHT MAGENTA  \033[95mExample
+\033[0mLIGHT CYAN     \033[96mExample
+\033[0mWHITE          \033[97mExample
+\033[0m
+""")

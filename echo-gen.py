@@ -1,10 +1,10 @@
-#!/data/data/com.termux/files/usr/bin/env python3
+#!/usr/bin/env python3
 import sys
 import webbrowser
 import functions
 
 REPO_LINK = "https://github.com/ZeroKun265/custom-bash-echo-generator"
-
+echo_command = ""
 help     = False
 start    = False
 finished = False
@@ -36,6 +36,57 @@ while not finished:
               help  = False
               menu = True
      #start loop:
+     components = []
      while start:
-          print("not yet available")
-          exit()
+          component = []
+          text = input("Insert some text, you'll later pick color and style:\n")
+          print(f"Now select colors and styling for {text}\n(not inserting any color or style means it will stary as default)")
+          print("Here are the available colors and styles")
+          functions.print_colors()
+          getting_style = True
+          styles = []
+          while getting_style:
+               print("To add a color or style, input its name, input L/l/list to see again the list of styles and colors\nInput Q/q/quit to stopp adding styles")
+               print(f"Current styles: {styles}")
+               style = input("\n")
+               if style in ["L", "l", "list"]:
+                   functions.print_colors()
+               elif style in ["Q", "q", "quit"]:
+                   getting_style = False
+               else:
+                   styles.append(style)
+          component.append(text)
+          component.append(styles)
+          component.append(functions.generate_escapes(component[1]))
+          print(f"Here is the component you created: {component[0:2]}")
+          while True:
+               keep = input("You want to keep the component? [Y/N]")
+               if keep in ["Y", "y", "yes"]:
+                    components.append(component)
+                    break
+               elif keep in ["N", "n", "no"]:
+                    print("Discarded component")
+                    break
+               else:
+                    print("Unrecognized character, try again\n")
+          while True:
+               more = input("Do you want to stop and get your echo command?[Y/N]")
+               if more in ["Y", "y", "yes"]:
+                    start = False
+                    help = False
+                    finished = True
+                    echo_command = functions.generate_echo(components)
+                    break
+               elif more in ["N", "n", "no"]:
+                    break
+               else:
+                    print("Unrecognized character\n")
+
+
+print("Here is your echo command:\n")
+print(echo_command)
+
+print("And here is a preview of it")
+preview = echo_command[9:-1]
+preview = preview.encode("latin-1", "backslashreplace").decode("unicode_escape")
+print(preview)
