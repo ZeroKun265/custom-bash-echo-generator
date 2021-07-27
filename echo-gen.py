@@ -27,8 +27,9 @@ while not finished:
      while help:
           print("Custom Echo Generator help section:\n")
           print("You will be adding pieces of text as components\nThe program will ask you to add a piece of text, then any styling(example: bold) and then a color")
-          print("The program won't detect errors in what you type(if you say red instead of RED) so make sure it's right")
+          print("Any typo in the color/stylenwill be ignored, only recognized keywords will actually be used")
           print("For more info check the Github's Repo\n\n")
+          print("Colors and style may be interpreted differently on different terminals")
           instr2 = input("Github:  G/g/github\nBack:    B/b/back\n\n")
           if instr2 in ["G", "g", "github"]:
               print(f"Trying to open '{REPO_LINK}'\nIf nothing happens then the enviroment variable BROWSER is not available, just copy the link by hand")
@@ -43,6 +44,7 @@ while not finished:
           print(f"Now select colors and styling for {text}\n(not inserting any color or style means it will stary as default)")
           print("Here are the available colors and styles")
           functions.print_colors()
+          functions.print_highlights()
           getting_style = True
           styles = []
           while getting_style:
@@ -51,6 +53,7 @@ while not finished:
                style = input("\n")
                if style in ["L", "l", "list"]:
                    functions.print_colors()
+                   functions.print_highlights()
                elif style in ["Q", "q", "quit"]:
                    getting_style = False
                else:
